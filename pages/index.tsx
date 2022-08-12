@@ -6,13 +6,13 @@ import AddNote from "../components/AddNote";
 import { useState } from "react";
 
 const Home: NextPage = () => {
-  const [noteList, setNoteList] = useState([{}]);
-
   interface NewNote {
     id: number;
     title: string;
     content: string;
   }
+
+  const [noteList, setNoteList] = useState<NewNote[]>([]);
 
   function addNoteHandler(note: NewNote) {
     setNoteList((prevVals) => {
@@ -20,13 +20,27 @@ const Home: NextPage = () => {
     });
   }
 
+  const deleteFromItemList = (id: number) => {
+    setNoteList((prevItems) => {
+      return prevItems.filter((val, index) => {
+        return index !== id;
+      });
+    });
+  };
+
   return (
-    <div>
+    <div className="p-10">
       <Header />
-      <h1>Hello World.</h1>
+      <div className="grid grid-rows-4 grid-flow-col gap-4"></div>
       <AddNote listLength={noteList.length} addNote={addNoteHandler} />
-      {noteList.map((n) => (
-        <Note key={n.id} id={n.id} title={n.title} content={n.content} />
+      {noteList.map((n, index) => (
+        <Note
+          key={index}
+          id={index}
+          title={n.title}
+          content={n.content}
+          deleteItem={deleteFromItemList}
+        />
       ))}
       <Footer />
     </div>

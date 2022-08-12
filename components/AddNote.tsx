@@ -26,21 +26,22 @@ const AddNote: FC<AddNoteProps> = (props) => {
     props.addNote(note);
   };
 
-  const titleChangeHandler = (e: ChangeEvent<HTMLFormElement>) => {
+  const titleChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.currentTarget.value;
     setTitleVal(newText);
   };
 
-  const contentChangeHandler = (e: ChangeEvent<HTMLFormElement>) => {
+  const contentChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newText = e.currentTarget.value;
     setContentVal(newText);
   };
 
   return (
-    <div>
+    <div className="p-10 m-auto text-center">
       <form onSubmit={addNotehandler}>
         <label htmlFor="title"></label>
         <input
+          className="border bg-slate-200 border-slate-600 m-2"
           onChange={titleChangeHandler}
           value={titleVal}
           type="text"
@@ -49,14 +50,14 @@ const AddNote: FC<AddNoteProps> = (props) => {
         ></input>
         <label htmlFor="content"></label>
         <input
+          className="border bg-slate-200 border-slate-600 m-2"
           onChange={contentChangeHandler}
           value={contentVal}
           type="text"
           name="content"
           placeholder="Enter your content..."
         ></input>
-        <label htmlFor="submit">Create New Note</label>
-        <input type="submit" name="submit"></input>
+        <input className="btn-primary" type="submit" name="submit"></input>
       </form>
     </div>
   );
