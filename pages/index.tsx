@@ -29,19 +29,21 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="p-10">
+    <div className="">
       <Header />
-      <div className="grid grid-rows-4 grid-flow-col gap-4"></div>
       <AddNote listLength={noteList.length} addNote={addNoteHandler} />
-      {noteList.map((n, index) => (
-        <Note
-          key={index}
-          id={index}
-          title={n.title}
-          content={n.content}
-          deleteItem={deleteFromItemList}
-        />
-      ))}
+
+      <div className="grid grid-cols-1 gap-4 justify-items-center my-5 md:grid-cols-7 md:px-10">
+        {noteList.map((n, index) => (
+          <Note
+            key={index}
+            id={index}
+            title={n.title}
+            content={n.content}
+            deleteItem={deleteFromItemList}
+          />
+        ))}
+      </div>
       <Footer />
     </div>
   );
