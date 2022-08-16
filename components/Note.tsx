@@ -9,9 +9,9 @@ interface NoteProps {
 
 const Note: FC<NoteProps> = ({ id, title, content, deleteItem }) => {
   return (
-    <div className="text-left w-3/4 border rounded-md shadow-md p-2 md:w-full">
+    <div className="mx-1 text-left w-full mb-3 border rounded-md shadow-md p-2 break-inside-avoid">
       <h1 className="font-bold text-xl">{title}</h1>
-      <p>{content}</p>
+      <p className="break-words">{content}</p>
       {/* <button className="btn-primary" onClick={() => deleteItem(id)}>
         Delete Note
       </button> */}

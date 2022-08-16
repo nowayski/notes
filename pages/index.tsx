@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Note from "../components/Note";
 import AddNote from "../components/AddNote";
 import { useState } from "react";
+import SideBar from "../components/SideBar";
 
 const Home: NextPage = () => {
   interface NewNote {
@@ -16,7 +17,7 @@ const Home: NextPage = () => {
 
   function addNoteHandler(note: NewNote) {
     setNoteList((prevVals) => {
-      return [...prevVals, note];
+      return [note, ...prevVals];
     });
   }
 
@@ -31,20 +32,26 @@ const Home: NextPage = () => {
   return (
     <div className="">
       <Header />
-      <AddNote listLength={noteList.length} addNote={addNoteHandler} />
-
-      <div className="grid grid-cols-1 gap-4 justify-items-center my-5 md:grid-cols-7 md:px-10">
-        {noteList.map((n, index) => (
-          <Note
-            key={index}
-            id={index}
-            title={n.title}
-            content={n.content}
-            deleteItem={deleteFromItemList}
-          />
-        ))}
+      <div className="flex flex-row h-full">
+        <div className="basis-1/6">
+          <SideBar />
+        </div>
+        <div className="basis-5/6">
+          <AddNote listLength={noteList.length} addNote={addNoteHandler} />
+          <div className="w-full gap-6 md:columns-5 md:px-10">
+            {noteList.map((n, index) => (
+              <Note
+                key={index}
+                id={index}
+                title={n.title}
+                content={n.content}
+                deleteItem={deleteFromItemList}
+              />
+            ))}
+          </div>
+          <Footer />
+        </div>
       </div>
-      <Footer />
     </div>
   );
 };
