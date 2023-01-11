@@ -6,7 +6,7 @@ const NoteDropDownMenu: FC = () => {
   const menuClickHandler = () => {
     setMenuVisible(!menuVisibile);
   };
-
+  
   return (
     <div onClick={menuClickHandler} className="p-3 cursor-pointer">
       <figure className="w-1 h-1 bg-black my-1 rounded-full"></figure>
