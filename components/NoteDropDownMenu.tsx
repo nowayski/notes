@@ -1,11 +1,18 @@
 import React, { FC, useState } from "react";
 
-const NoteDropDownMenu: FC = () => {
+
+interface NoteDropDownMenuProps {
+  id_num: number;
+  deleteHandler: Function;
+}
+
+const NoteDropDownMenu: FC<NoteDropDownMenuProps> = ({id_num, deleteHandler}) => {
   const [menuVisibile, setMenuVisible] = useState<boolean>(false);
 
   const menuClickHandler = () => {
     setMenuVisible(!menuVisibile);
   };
+  
   
   return (
     <div onClick={menuClickHandler} className="p-3 cursor-pointer">
@@ -17,7 +24,7 @@ const NoteDropDownMenu: FC = () => {
         <ul className="absolute bg-white border p-2">
           <li className="my-2">Assign Label</li>
           <li className="my-2">Change Colour</li>
-          <li className="my-2">Delete Item</li>
+          <li className="my-2"><button onClick={() => deleteHandler(id_num)}>Delete Item</button></li>
           <li className="my-2">Assign Label</li>
         </ul>
       ) : null}

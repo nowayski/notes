@@ -46,6 +46,7 @@ const Home: NextPage = () => {
                 title={n.title}
                 content={n.content}
                 deleteItem={deleteFromItemList}
+                deleteHandler={deleteFromItemList}
               />
             ))}
           </div>

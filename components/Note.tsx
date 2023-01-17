@@ -6,6 +6,7 @@ interface NoteProps {
   title: string;
   content: string;
   deleteItem: Function;
+  deleteHandler: Function;
 }
 
 const Note: FC<NoteProps> = ({ id, title, content, deleteItem }) => {
@@ -16,7 +17,9 @@ const Note: FC<NoteProps> = ({ id, title, content, deleteItem }) => {
           <h1 className="font-bold text-xl">{title}</h1>
         </div>
         <div className="basis-1/6">
-          <NoteDropDownMenu />
+          <NoteDropDownMenu
+            id_num={id}
+            deleteHandler={() => deleteItem(id)} />
         </div>
       </div>
       <p className="break-words">{content}</p>
